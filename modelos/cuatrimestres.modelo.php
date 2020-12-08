@@ -56,7 +56,7 @@ class ModeloCuatrimestres{
 	=================================*/
 	static public function mdlEditarCuatrimestre($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET NomCuatrimestre = :nombre WHERE IdCuatrimestre = :idCuatrimestre;");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET NomCuatrimestre = :nombre WHERE IdCuatrimestre=:idCuatrimestre;");
 		$stmt->bindParam(":idCuatrimestre", $datos["IdCuatrimestre"], PDO::PARAM_STR);
 		$stmt->bindParam(":nombre", $datos["NomCuatrimestre"], PDO::PARAM_STR);
 
@@ -89,5 +89,18 @@ class ModeloCuatrimestres{
 		$stmt = null;
 
 	}
+
+	static public function mdlValidarDatos($tabla, $item, $valor){
+    $stmt = Conexion::conectar()->prepare("SELECT COUNT(*) FROM $tabla WHERE $item = :$item");  
+          $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+          $stmt ->execute();
+          $existencia = $stmt->fetchColumn();
+
+          if ($existencia > 0) {
+              return true;
+          } else {
+              return null;
+          }
+  	}
 
 }

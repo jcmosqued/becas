@@ -17,14 +17,14 @@ class AjaxProyectos{
 	}
 
 	/*===================================
-	VALIDAR NO REPETIR USUARIO
+	VALIDAR NO REPETIR PROYECTO
 	===================================*/
 
-	public function ajaxValidarUsuario(){
+	public function ajaxValidarProyecto(){
 
-		$item = "usuario";
-		$valor = $_POST["validarUsuario"];
-		$respuesta = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+		$item = "NomProyecto";
+		$valor = $_POST["validarProyecto"];
+		$respuesta = ControladorProyectos::ctrValidarProyectos($item, $valor);
 		echo json_encode($respuesta);
 	}
 
@@ -54,10 +54,10 @@ if(isset($_POST["estadoProyecto"])){
 /*===================================
 VALIDAR NO REPETIR USUARIO
 ===================================*/
-if(isset($_POST["validarUsuario"])){ 
+if(isset($_POST["validarProyecto"])){ 
 
-	$valUsuario = new AjaxUsuarios();
-	$valUsuario -> ajaxValidarUsuario();
+	$valUsuario = new AjaxProyectos();
+	$valUsuario -> ajaxValidarProyecto();
 
 }
 

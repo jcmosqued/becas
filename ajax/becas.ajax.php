@@ -13,9 +13,9 @@ class AjaxBeca{
 
 	public function ajaxValidarBecas(){
 
-		$item = "becas";
+		$item = "NomBeca";
 		$valor = $_POST["validarBeca"];
-		$respuesta = ControladorBecas::ctrMostrarBecas($item, $valor);
+		$respuesta = ControladorBecas::ctrValidarBecas($item, $valor);
 		echo json_encode($respuesta);
 	}
 
@@ -31,8 +31,8 @@ class AjaxBeca{
 		echo json_encode($respuesta);
 	}
 
-
-	/*===================================
+}
+/*===================================
 EDITAR UNIDAD Academica
 ===================================*/
 
@@ -50,11 +50,11 @@ VALIDAR NO REPETIR UNIDAD ACADEMICA
 
 if(isset($_POST["validarBeca"])){ 
 
-	
+	$valBeca = new AjaxBeca();
+	$valBeca -> ajaxValidarBecas();
 
 }
 
 
 
-}
 

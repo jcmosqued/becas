@@ -5,7 +5,7 @@
 class ControladorBecas{
 
 /*================================
-	MOSTRAR Becas
+	MOSTRAR BECASs
 	=================================*/
 
 	static public function ctrMostrarBecas($item, $valor){
@@ -125,6 +125,16 @@ class ControladorBecas{
 
 		}
 
+	}
+
+	/*================================
+	VALIDAR BECAS
+	=================================*/
+	static public function ctrValidarBecas($item, $valor){
+		$tabla ="becas";
+
+		$respuesta = ModeloBecas::mdlValidarDatos($tabla, $item, $valor);
+		return $respuesta;
 	}
 
 

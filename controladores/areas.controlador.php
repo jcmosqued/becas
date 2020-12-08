@@ -65,6 +65,18 @@ class ControladorAreas{
 
 
 	/*================================
+	VALIDAR AREAS
+	=================================*/
+	static public function ctrValidarAreas($item, $valor){
+		$tabla ="areas";
+
+		$respuesta = ModeloAreas::mdlValidarDatos($tabla, $item, $valor);
+		return $respuesta;
+	}
+
+
+
+	/*================================
 	CREAR AREAS
 	=================================*/
 
@@ -83,7 +95,7 @@ class ControladorAreas{
 				echo '<script>
 					swal({
 						type: "success",
-						title: "El area se ha guardado correctamente",
+						title: "El Area se ha Guardado correctamente",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result){
@@ -96,7 +108,7 @@ class ControladorAreas{
 				echo '<script>
 					swal({
 						type: "error",
-						title: "El registro no se guardo, intentalo nuevamente",
+						title: "El registro no se Guardo, intentalo nuevamente",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result){

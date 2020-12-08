@@ -27,24 +27,38 @@ class ModeloUsuarios{
 
 	}
 
-	static public function mdlMostrarUsuarios($tabla, $item, $valor){
+	static public function mdlValidarDatos($tabla, $item, $valor){
+		$stmt = Conexion::conectar()->prepare("SELECT COUNT(*) FROM $tabla WHERE $item = :$item");	
+					$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+					$stmt ->execute();
+					$existencia = $stmt->fetchColumn();
 
+					if ($existencia > 0) {
+		    			return true;
+					} else {
+					    return null;
+					}
+	}
+
+
+	static public function mdlMostrarUsuarios($tabla, $item, $valor){
+		//tabla = empleados
+		//item = null
+		// valor = null
 		
 		if($item != null){
-
-			
-			$stmt = Conexion::conectar()->prepare("select u.*,e.* from usuarios u inner join " . $tabla . " e where e.IdUsuario = u.IdUsuario and e.NumEmpleado=" . $valor . "");	
+				$stmt = Conexion::conectar()->prepare("select u.*,e.* from usuarios u inner join " . $tabla . " e where e.IdUsuario = u.IdUsuario and e.NumEmpleado=" . $valor . "");	
 					
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);		
-			$stmt->execute();
-			return $stmt->fetch();
-			
-			
+				$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);		
+				$stmt->execute();
+				return $stmt->fetch();
 
+			
 		} else {
 
 			//$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY idUsuario DESC");
-			$stmt = Conexion::conectar()->prepare("select e.*,u.* from " . $tabla . " e inner join usuarios u where u.IdUsuario = e.IdUsuario");
+			$stmt = Conexion::conectar()->prepare("SELECT e.*, u.* FROM $tabla e
+												JOIN Usuarios u ON e.IdUsuario = u.IdUsuario");
 			$stmt->execute();
 			return $stmt->fetchAll();
 			

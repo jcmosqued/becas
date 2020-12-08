@@ -127,6 +127,8 @@ session_start();
   <script src="vistas/dist/js/areas.js"></script>
   <script src="vistas/dist/js/carreras.js"></script>
   <script src="vistas/dist/js/alumnos.js"></script>
+  <script src="vistas/dist/js/bajas.js"></script>
+  <script src="vistas/dist/js/motivos.js"></script>
 
 
   <!-- REQUIRED JS SCRIPTS -->

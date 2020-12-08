@@ -1,6 +1,3 @@
-<!--=========================
-CUATRIMESTRES AJAX
-==========================-->
 <?php 
 
 require_once "../controladores/cuatrimestres.controlador.php";
@@ -24,13 +21,13 @@ class AjaxCuatrimestres{
 	VALIDAR NO REPETIR CUATRIMESTRES
 	===================================*/
 
-	/*public function ajaxValidarUsuario(){
+	public function ajaxValidarCuatrimestre(){
 
-		$item = "Cuatrimestres";
-		$valor = $_POST["validarUsuario"];
-		$respuesta = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+		$item = "NomCuatrimestre";
+		$valor = $_POST["validarCuatrimestre"];
+		$respuesta = ControladorCuatrimestres::ctrValidarCuatrimestres($item, $valor);
 		echo json_encode($respuesta);
-	}*/
+	}
 
 	/*===================================
 	EDITAR CUATRIMESTRE
@@ -46,13 +43,13 @@ class AjaxCuatrimestres{
 }
 
 /*===================================
-VALIDAR NO REPETIR USUARIO
+VALIDAR NO REPETIR CUATRIMESTRE
 ===================================*/
 
-if(isset($_POST["validarUsuario"])){ 
+if(isset($_POST["validarCuatrimestre"])){ 
 
-	$valUsuario = new AjaxUsuarios();
-	$valUsuario -> ajaxValidarUsuario();
+	$valUsuario = new AjaxCuatrimestres();
+	$valUsuario -> ajaxValidarCuatrimestre();
 
 }
 

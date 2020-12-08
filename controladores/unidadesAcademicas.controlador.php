@@ -35,7 +35,7 @@ class ControladorUnidadesAcademicas{
 				echo '<script>
 					swal({
 						type: "success",
-						title: "La Unidad Academica se ha Editado correctamente",
+						title: "La Unidad Académica se ha Editado correctamente",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result){
@@ -83,7 +83,7 @@ class ControladorUnidadesAcademicas{
 				echo '<script>
 					swal({
 						type: "success",
-						title: "El usuario se ha guardado correctamente",
+						title: "La Unidad Académica se ha Guardado correctamente",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result){
@@ -125,6 +125,17 @@ class ControladorUnidadesAcademicas{
 
 		}
 
+	}
+
+
+	/*================================
+	VALIDAR UNIDADES ACADEMICAS
+	=================================*/
+	static public function ctrValidarUnidadesAcademicas($item, $valor){
+		$tabla ="unidadesacademicas";
+
+		$respuesta = ModeloUnidadesAcademicas::mdlValidarDatos($tabla, $item, $valor);
+		return $respuesta;
 	}
 
 

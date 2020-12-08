@@ -49,16 +49,14 @@ EDITAR ESPECIALIDADES
 ===================================*/
 $('.tablaEspecialidades').on("click", ".btnEditarEspecialidad", function(){
 	
-	var IdEspecialiadad = $(this).attr("IdEspecialidad");
-	//var NomEspecialiadad = $(this).attr("NomEspecialidad");
+	var idEspecialidad = $(this).attr("IdEspecialidad");
+	var nomEspecialidad = $(this).attr("NomEspecialidad");
 	
-	$("#IdEspecialidad").val(IdEspecialiadad);
-	$("#IdEspecialidad2").val(IdEspecialiadad);
-	//$("#NomEspecialidad").val(NomEspecialiadad);
+	$("#IdEspecialidad").val(idEspecialidad);
 
 	var datos = new FormData();
 
-	datos.append("IdEspecialidad", IdEspecialidad);
+	datos.append("IdEspecialidad", idEspecialidad);
 	
 	$.ajax({
 		url:"ajax/especialidades.ajax.php",
@@ -71,7 +69,9 @@ $('.tablaEspecialidades').on("click", ".btnEditarEspecialidad", function(){
 		success: function(respuesta){
 
 			$("#IdEspecialidad").val(respuesta["IdEspecialidad"]);
+			$("#IdEspecialidad2").val(respuesta["IdEspecialidad"]);
 			$("#NomEspecialidad").val(respuesta["NomEspecialidad"]);
+			$("#IdCarrera").val(respuesta["IdCarrera"]);
 			
 		}
 	})
@@ -86,7 +86,7 @@ $('.tablaEspecialidades').on("click", ".btnEliminarEspecialidad", function(){
 	var IdEspecialidad = $(this).attr("IdEspecialidad");
 
 	swal({
-		title: "¿Está seguro de elimnar la Especialidad?",
+		title: "¿Está seguro de eliminar la Especialidad?",
 		text: "Una vez eliminado no se puede deshacer la operación",
 		type: "warning",
 		showCancelButton: true,
@@ -102,3 +102,33 @@ $('.tablaEspecialidades').on("click", ".btnEliminarEspecialidad", function(){
 	})
 
 })
+
+/*===================================
+REVISAR SI LA ESPECIALIDAD YA EXISTE
+===================================*/
+
+	$(".validarEspecialidad").change(function(){
+
+		$(".alert").remove();
+		var Especialidad = $(this).val();
+		var datos = new FormData();
+		datos.append("validarEspecialidad", Especialidad);
+
+
+		$.ajax({
+			url:"ajax/especialidades.ajax.php",
+			method: "POST",
+			data: datos,
+			cache: false,
+			contentType: false,
+			processData:false,
+			success: function(respuesta){
+				if(respuesta == "true"){
+					$(".validarEspecialidad").parent().after('<div class="alert alert-warning">La Especialidad ya existe</div>');
+					$(".validarEspecialidad").val("");
+				}
+			}
+			
+		})
+
+	})

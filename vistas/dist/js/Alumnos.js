@@ -67,8 +67,7 @@ REVISAR SI Alumno YA EXISTE
 			contentType: false,
 			processData:false,
 			success: function(respuesta){
-				console.log(respuesta);
-				if(respuesta != "false"){
+				if(respuesta == "true"){
 					$(".validarAlumno").parent().after('<div class="alert alert-warning">El Alumno ya existe</div>');
 					$(".validarAlumno").val("");
 				}
@@ -125,32 +124,37 @@ EDITAR ALUMNOS
 
 $('.TablaAlumnos').on("click", ".btnEditarAlumno", function(){
 	
-	var IdAlumno = $(this).attr("IdAlumno");
+	var idAlumno = $(this).attr("IdAlumno");
 	
-	var NomAlumno = $(this).attr("NomAlumno");
-	var Matricula = $(this).attr("Matricula");
-	var IdUnidadAcademica = $(this).attr("IdUnidadAcademica");
-	var IdCarrera = $(this).attr("IdCarrera");
-	var IdEspecialidad = $(this).attr("IdEspecialidad");
-	var Turno = $(this).attr("Turno");
-	var Grupo = $(this).attr("Grupo");
-	var IdBeca = $(this).attr("IdBeca");
-	var HorasServicioBecario = $(this).attr("HorasServicioBecario");
-	
+	var datos = new FormData();
 
-
+	datos.append("IdAlumno", idAlumno);
 	
-	$("#IdAlumno").val(IdAlumno);
-	$("#IdAlumno2").val(IdAlumno);
-	$("#NomAlumno").val(NomAlumno);
-	$("#Matricula").val(Matricula);
-	$("#IdUnidadAcademica").val(IdUnidadAcademica);
-	$("#IdCarrera").val(IdCarrera);
-	$("#IdEspecialidad").val(IdEspecialidad);
-	$("#Turno").val(Turno);
-	$("#Grupo").val(Grupo);
-	$("#IdBeca").val(IdBeca);
-	$("#HorasServicioBecario").val(HorasServicioBecario);
+ 
+ 	$.ajax({
+	   url: "ajax/alumnos.ajax.php",
+	   method: "POST",
+	   data: datos,
+	   cache: false,
+	   contentType: false,
+	   processData: false,
+	   dataType: "json",
+	   success: function(respuesta){
+		   $("#IdAlumno").val(respuesta["IdAlumno"]);
+			$("#IdAlumno2").val(respuesta["IdAlumno"]);
+			$("#NomAlumno").val(respuesta["NomAlumno"]);
+			$("#Matricula").val(respuesta["Matricula"]);
+			$("#IdUnidadAcademica").val(respuesta["IdUnidadAcademica"]);
+			$("#IdCarrera").val(respuesta["IdCarrera"]);
+			$("#IdEspecialidad").val(respuesta["IdEspecialidad"]);
+			$("#Turno").val(respuesta["Turno"]);
+			$("#Grupo").val(respuesta["IdGrupo"]);
+			$("#IdBeca").val(respuesta["IdBeca"]);
+			$("#HorasServicioBecario").val(respuesta["HorasServicioBecario"]);
+	   }
+   })
+	
+	
 	
 
 
@@ -197,7 +201,7 @@ $('.TablaAlumnos').on("click", ".btnEliminarAlumno", function(){
    
 	   
    swal({
-	   title: "¿Está seguro de elimnar el alumno?",
+	   title: "¿Está seguro de eliminar el Alumno?",
 	   text: "Una vez eliminado no se puede deshacer la operación",
 	   type: "warning",
 	   showCancelButton: true,

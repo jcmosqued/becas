@@ -7,7 +7,7 @@ class ControladorProyectos{
 	=================================*/
 	static public function ctrMostrarProyectos($item, $valor){
 
-		$tabla ="Proyectos";
+		$tabla ="proyectos";
 
 		$respuesta = ModeloProyectos::mdlMostrarProyectos($tabla, $item, $valor);
 		return $respuesta;
@@ -15,7 +15,7 @@ class ControladorProyectos{
 	}
 
 	/*================================
-	INSERTAR PROYECTO
+	INSERTAR PROYECTOs
 	=================================*/
 	static public function ctrInsertarProyecto(){
 		if(isset($_POST['nombreProyecto'])){
@@ -76,7 +76,7 @@ class ControladorProyectos{
 
 		if(isset($_POST['EditarNomProyecto'])){
 
-			$datos = array(	"IdProyecto"=>$_POST["IdProyecto"],
+			$datos = array(	"IdProyecto"=>$_POST["IdProyecto2"],
 							"NomProyecto"=>$_POST["EditarNomProyecto"],
 							"IdEmpleado"=>$_POST["EditarIdEmpleado"],
 							"IdArea"=>$_POST["EditarIdArea"],
@@ -128,15 +128,74 @@ class ControladorProyectos{
 	}
 
 	/*================================
-	ELIMINAR CUATRIMESTRE
+	ELIMINAR PROYECTOS
 	=================================*/
-	static public function ctrEliminarCuatrimestre(){
+	static public function ctrEliminarProyecto(){
 
-		if(isset($_GET["IdCuatrimestre"])){
+		if(isset($_GET["IdProyecto"])){
 
-			ModeloCuatrimestres::mdlEliminarCuatrimestre("Cuatrimestres", $_GET["IdCuatrimestre"]);
+			ModeloProyectos::mdlEliminarProyecto("Proyectos", $_GET["IdProyecto"]);
 
 		}
 
+	}
+
+	/*================================
+	Listas
+	=================================*/
+
+	static public function ctrCargarListaEmpleados(){
+		$tabla = "empleados";
+
+		$stmt = ModeloProyectos::mdlCargarListas($tabla);
+
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		if ($stmt->rowCount() > 0) {
+     		foreach ($results as $row) {
+      			echo "<option value='".$row["IdEmpleado"]."'>".$row["NomEmpleado"]."</option>";
+    	} 
+		}
+
+	}
+
+	static public function ctrCargarListaAreas(){
+		$tabla = "areas";
+
+		$stmt = ModeloProyectos::mdlCargarListas($tabla);
+
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		if ($stmt->rowCount() > 0) {
+     		foreach ($results as $row) {
+      			echo "<option value='".$row["IdArea"]."'>".$row["NomArea"]."</option>";
+    	} 
+		}
+
+	}
+
+	static public function ctrCargarListaCuatrimestres(){
+		$tabla = "cuatrimestres";
+
+		$stmt = ModeloProyectos::mdlCargarListas($tabla);
+
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		if ($stmt->rowCount() > 0) {
+     		foreach ($results as $row) {
+      			echo "<option value='".$row["IdCuatrimestre"]."'>".$row["NomCuatrimestre"]."</option>";
+    	} 
+		}
+
+	}
+
+	/*================================
+	VALIDAR PROYECTOS
+	=================================*/
+	static public function ctrValidarProyectos($item, $valor){
+		$tabla ="proyectos";
+
+		$respuesta = ModeloProyectos::mdlValidarDatos($tabla, $item, $valor);
+		return $respuesta;
 	}
 }

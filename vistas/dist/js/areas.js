@@ -45,41 +45,35 @@ $('.tablaAreas').DataTable({
 
 });
 
-
-
-
-
 /*===================================
-REVISAR SI EL USUARIO YA EXISTE
+REVISAR SI EL AREA YA EXISTE
 ===================================*/
 
-   $(".validarUsuario").change(function(){
+	$(".validarArea").change(function(){
 
-	   $(".alert").remove();
-	   var usuario = $(this).val();
-	   var datos = new FormData();
-	   datos.append("validarUsuario", usuario);
+		$(".alert").remove();
+		var area = $(this).val();
+		var datos = new FormData();
+		datos.append("validarArea", area);
 
 
-	   $.ajax({
-		   url:"ajax/usuarios.ajax.php",
-		   method: "POST",
-		   data: datos,
-		   cache: false,
-		   contentType: false,
-		   processData:false,
-		   success: function(respuesta){
-			   console.log(respuesta);
-			   if(respuesta != "false"){
-				   $(".validarUsuario").parent().after('<div class="alert alert-warning">El usuario ya existe</div>');
-				   $(".validarUsuario").val("");
-			   }
-		   }
-		   
-	   });
+		$.ajax({
+			url:"ajax/areas.ajax.php",
+			method: "POST",
+			data: datos,
+			cache: false,
+			contentType: false,
+			processData:false,
+			success: function(respuesta){
+				if(respuesta == "true"){
+					$(".validarArea").parent().after('<div class="alert alert-warning">El Área ya existe</div>');
+					$(".validarArea").val("");
+				}
+			}
+			
+		})
 
-   })
-
+	})
 
 
 
@@ -125,7 +119,7 @@ $('.tablaAreas').on("click", ".btnEliminarArea", function(){
    
 	   
    swal({
-	   title: "¿Está seguro de elimnar al area?",
+	   title: "¿Está seguro de eliminar al Área?",
 	   text: "Una vez eliminado no se puede deshacer la operación",
 	   type: "warning",
 	   showCancelButton: true,

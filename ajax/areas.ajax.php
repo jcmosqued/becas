@@ -7,28 +7,15 @@ require_once "../modelos/areas.modelo.php";
 
 class AjaxAreas{
 
-
 	/*===================================
-	ACTIVAR USUARIO
+	VALIDAR NO REPETIR ÁREA
 	===================================*/
 
-	public function ajaxActivarUsuario(){
+	public function ajaxValidarArea(){
 
-		$respuesta = ModeloUsuarios::mdlActualizarUsuario("empleados", "Estado", $_POST["estadoUsuario"], "IdEmpleado", $_POST["idUsuario"]);
-		
-		echo $respuesta;
-
-	}
-
-	/*===================================
-	VALIDAR NO REPETIR USUARIO
-	===================================*/
-
-	public function ajaxValidarUsuario(){
-
-		$item = "NumEmpleado";
-		$valor = $_POST["validarUsuario"];
-		$respuesta = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+		$item = "NomArea";
+		$valor = $_POST["validarArea"];
+		$respuesta = ControladorAreas::ctrValidarAreas($item, $valor);
 		echo json_encode($respuesta);
 	}
 
@@ -45,9 +32,15 @@ class AjaxAreas{
 
 }
 
+/*===================================
+VALIDAR AREA
+===================================*/
+if(isset($_POST["validarArea"])){
 
+	$valArea = new AjaxAreas();
+	$valArea -> ajaxValidarArea();
 
-
+}
 
 /*===================================
 EDITAR AREA

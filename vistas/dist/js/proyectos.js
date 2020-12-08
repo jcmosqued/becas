@@ -82,28 +82,27 @@ $('.TablaProyectos').on("click",".btnActivar", function(){
 })
 
 /*===================================
-REVISAR SI EL UNIDADES ACADEMICAS YA EXISTE
+REVISAR SI EL PROYECTO YA EXISTE
 ===================================*/
-	$(".validarUnidadAcademica").change(function(){
+	$(".validarProyecto").change(function(){
 
 		$(".alert").remove();
-		var unidadAcademica = $(this).val();
+		var proyecto = $(this).val();
 		var datos = new FormData();
-		datos.append("validarUnidadAcademica", unidadAcademica);
+		datos.append("validarProyecto", proyecto);
 
 
 		$.ajax({
-			url:"ajax/unidadesAcademicas.ajax.php",
+			url:"ajax/proyectos.ajax.php",
 			method: "POST",
 			data: datos,
 			cache: false,
 			contentType: false,
 			processData:false,
 			success: function(respuesta){
-				console.log(respuesta);
-				if(respuesta != "false"){
-					$(".validarUnidadAcademica").parent().after('<div class="alert alert-warning">El usuario ya existe</div>');
-					$(".validarUnidadAcademica").val("");
+				if(respuesta == "true"){
+					$(".validarProyecto").parent().after('<div class="alert alert-warning">El Proyecto ya existe</div>');
+					$(".validarProyecto").val("");
 				}
 			}
 			
@@ -112,42 +111,14 @@ REVISAR SI EL UNIDADES ACADEMICAS YA EXISTE
 	})
 
 /*===================================
-EDITAR PROYECTO
+EDITAR PROYECTOS
 ===================================*/
 $('.TablaProyectos').on("click", ".btnEditarProyecto", function(){
 	
 	var idProyecto = $(this).attr("IdProyecto");
-	/*var nomProyecto = $(this).attr("NomProyecto");
-	var idEmpleado = $(this).attr("IdEmpleado");
-	var idArea = $(this).attr("IdArea");
-	var departamento = $(this).attr("Departamento");
-	var tipoActividades = $(this).attr("TipoActividades");
-	var especificarActividades = $(this).attr("EspecificarActividades");
-	var idCuatrimestre = $(this).attr("IdCuatrimestre");
-	var fechaInicio = $(this).attr("FechaInicio");
-	var duracion = $(this).attr("Duracion");
-	var cantidadAlumnos = $(this).attr("CantidadAlumnos");
-	var sexo = $(this).attr("Sexo");
-	var carrerasPreferentes = $(this).attr("CarrerasPreferentes");
-	var observaciones = $(this).attr("Observaciones");
-	var estatus = $(this).attr("estatus");*/
 	
 	$("#IdProyecto").val(idProyecto);
 	$("#IdProyecto2").val(idProyecto);
-	/*$("#NomProyecto").val(nomProyecto);
-	$("#IdEmpleado").val(idEmpleado);
-	$("#IdArea").val(idArea);
-	$("#Departamento").val(departamento);
-	$("#TipoActividades").val(tipoActividades);
-	$("#EspecificarActividades").val(especificarActividades);
-	$("#IdCuatrimestre").val(idCuatrimestre);
-	$("#FechaInicio").val(fechaInicio);
-	$("#Duracion").val(duracion);
-	$("#CantidadAlumnos").val(cantidadAlumnos);
-	$("#Sexo").val(sexo);
-	$("#CarrerasPreferentes").val(carrerasPreferentes);
-	$("#Observaciones").val(observaciones);
-	$("#Estatus").val(estatus);*/
 
 	var datos = new FormData();
 
@@ -177,7 +148,7 @@ $('.TablaProyectos').on("click", ".btnEditarProyecto", function(){
 			$("#Duracion").val(respuesta["Duracion"]);
 			$("#CantidadAlumnos").val(respuesta["CantidadAlumnos"]);
 			$("#Sexo").val(respuesta["Sexo"]);
-			$("#CarrerasPreferentes").val(respuesta["CarrerasPreferentes"]);
+			$("#CarrerasPreferentes").val(respuesta["CarrerasPreferidas"]);
 			$("#Observaciones").val(respuesta["Observaciones"]);
 			$("#Estatus").val(respuesta["Estatus"]);
 		
@@ -187,15 +158,14 @@ $('.TablaProyectos').on("click", ".btnEditarProyecto", function(){
 })
 
 /*===================================
-ELIMINAR CATEGORIA
+ELIMINAR PROYECTOS
 ===================================*/
-/*$('.TablaUnidadesAcademicas').on("click", ".btnEliminarUnidadAcademica", function(){
-   var IdUnidadAcademica = $(this).attr("IdUnidadAcademica");
-   
-   
+$('.TablaProyectos').on("click", ".btnEliminarProyecto", function(){
+
+   var IdProyecto = $(this).attr("IdProyecto");
 	   
    swal({
-	   title: "¿Está seguro de elimnar la Unidad Academica?",
+	   title: "¿Está seguro de eliminar el Proyecto?",
 	   text: "Una vez eliminado no se puede deshacer la operación",
 	   type: "warning",
 	   showCancelButton: true,
@@ -206,9 +176,9 @@ ELIMINAR CATEGORIA
    }).then(function(result){
 
 	   if(result.value){
-		   window.location = "index.php?ruta=unidadesacademicas&IdUnidadAcademica="+IdUnidadAcademica;
+		   window.location = "index.php?ruta=proyectos&IdProyecto="+IdProyecto;
 	   }
    })
 
 
-})*/
+})

@@ -33,6 +33,19 @@ class ModeloBecas{
 
 	}
 
+	static public function mdlValidarDatos($tabla, $item, $valor){
+    $stmt = Conexion::conectar()->prepare("SELECT COUNT(*) FROM $tabla WHERE $item = :$item");  
+          $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+          $stmt ->execute();
+          $existencia = $stmt->fetchColumn();
+
+          if ($existencia > 0) {
+              return true;
+          } else {
+              return null;
+          }
+  	}
+
 	static public function mdlIngresarBeca($tabla, $datos){
 
 		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (NomBeca) VALUES (:NomBeca);");

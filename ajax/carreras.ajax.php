@@ -7,28 +7,15 @@ require_once "../modelos/carreras.modelo.php";
 
 class AjaxCarreras{
 
-
 	/*===================================
-	ACTIVAR USUARIO
+	VALIDAR NO REPETIR CARRERA
 	===================================*/
 
-	public function ajaxActivarUsuario(){
+	public function ajaxValidarCarrera(){
 
-		$respuesta = ModeloUsuarios::mdlActualizarUsuario("empleados", "Estado", $_POST["estadoUsuario"], "IdEmpleado", $_POST["idUsuario"]);
-		
-		echo $respuesta;
-
-	}
-
-	/*===================================
-	VALIDAR NO REPETIR USUARIO
-	===================================*/
-
-	public function ajaxValidarUsuario(){
-
-		$item = "NumEmpleado";
-		$valor = $_POST["validarUsuario"];
-		$respuesta = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+		$item = "NomCarrera";
+		$valor = $_POST["validarCarrera"];
+		$respuesta = ControladorCarreras::ctrValidarCarreras($item, $valor);
 		echo json_encode($respuesta);
 	}
 
@@ -46,7 +33,15 @@ class AjaxCarreras{
 }
 
 
+/*===================================
+	VALIDAR NO REPETIR CARRERA
+===================================*/
+if(isset($_POST["validarCarrera"])){
 
+	$valCarrera = new AjaxCarreras();
+	$valCarrera -> ajaxValidarCarrera();
+
+}
 
 
 /*===================================

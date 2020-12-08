@@ -15,7 +15,7 @@ class ControladorEspecialidades{
 	}
 
 	/*================================
-	INSERTAR ESPECIALIDAD
+	INSERTAR ESPECIALIDAD 
 	=================================*/
 	static public function ctrInsertarEspecialidad(){
 		if(isset($_POST['nombreEspecialidad'])){
@@ -65,8 +65,10 @@ class ControladorEspecialidades{
 
 		if(isset($_POST['EditarNombreEspecialidad'])){
 
-			$datos = array(	"IdEspecialidad"=>$_POST["IdEspecialidad"],/*el nombre cambiara*/
-							"NomEspecialidad"=>$_POST["EditarNombreEspecialidad"]);
+
+			$datos = array(	"IdEspecialidad"=>$_POST["IdEspecialidad2"],/*el nombre cambiara*/
+							"NomEspecialidad"=>$_POST["EditarNombreEspecialidad"],
+							"IdCarrera" =>$_POST["EditarIdCarrera"]);
 
 			$respuesta = ModeloEspecialidades::mdlEditarEspecialidad("Especialidades", $datos);
 
@@ -115,4 +117,35 @@ class ControladorEspecialidades{
 		}
 
 	}
+
+	/*================================
+	Listas
+	=================================*/
+
+	static public function ctrCargarListaCarreras(){
+		$tabla = "carreras";
+
+		$stmt = ModeloEspecialidades::mdlCargarListaCarreras($tabla);
+
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		if ($stmt->rowCount() > 0) {
+     		foreach ($results as $row) {
+      			echo "<option value='".$row["IdCarrera"]."'>".$row["NomCarrera"]."</option>";
+    	} 
+		}
+
+	}
+
+	/*================================
+	VALIDAR ESPECIALIDADES
+	=================================*/
+	static public function ctrValidarEspecialidades($item, $valor){
+		$tabla ="especialidades";
+
+		$respuesta = ModeloEspecialidades::mdlValidarDatos($tabla, $item, $valor);
+		return $respuesta;
+	}
+
+
 }

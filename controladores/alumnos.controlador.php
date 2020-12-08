@@ -8,7 +8,7 @@ class ControladorAlumnos{
 	static public function ctrMostrarAlumnos($item, $valor){
 
 		//$tabla ="usuarios";
-		$tabla ="Alumnos";
+		$tabla ="alumnos";
 
 		$respuesta = ModeloAlumnos::mdlMostrarAlumnos($tabla, $item, $valor);
 		return $respuesta;
@@ -32,7 +32,7 @@ class ControladorAlumnos{
 							"IdCarrera"=>$_POST["IdCarrera"],
 							"IdEspecialidad"=>$_POST["IdEspecialidad"],
 							"Turno"=>$_POST["Turno"],
-							"Grupo"=>$_POST["Grupo"],
+							"IdGrupo"=>$_POST["Grupo"],
 							"IdBeca"=>$_POST["IdBeca"],
 							"HorasServicioBecario"=>$_POST["HorasServicioBecario"]);
 
@@ -90,7 +90,7 @@ class ControladorAlumnos{
 			"IdCarrera"=>$_POST["IdCarrera"],
 			"IdEspecialidad"=>$_POST["IdEspecialidad"],
 			"Turno"=>$_POST["Turno"],
-			"Grupo"=>$_POST["Grupo"],
+			"IdGrupo"=>$_POST["Grupo"],
 			"IdBeca"=>$_POST["IdBeca"],
 			"HorasServicioBecario"=>$_POST["HorasServicioBecario"]);
 
@@ -146,4 +146,97 @@ class ControladorAlumnos{
 		}
 
 	}
+
+	/*================================
+	VALIDAR ALUMNOS
+	=================================*/
+	static public function ctrValidarAlumnos($item, $valor){
+		$tabla ="alumnos";
+
+		$respuesta = ModeloAlumnos::mdlValidarDatos($tabla, $item, $valor);
+		return $respuesta;
+
+	}
+
+
+	/*================================
+	Listas
+	=================================*/
+
+	static public function ctrCargarListaUnidadAcademicas(){
+		$tabla = "unidadesacademicas";
+
+		$stmt = ModeloAlumnos::mdlCargarListas($tabla);
+
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		if ($stmt->rowCount() > 0) {
+     		foreach ($results as $row) {
+      			echo "<option value='".$row["IdUnidadAcademica"]."'>".$row["NomUnidadAcademica"]."</option>";
+    	} 
+		}
+
+	}
+
+	static public function ctrCargarListaCarreras(){
+		$tabla= "carreras";
+
+		$stmt = ModeloAlumnos::mdlCargarListas($tabla);
+
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		if ($stmt->rowCount() > 0) {
+     		foreach ($results as $row) {
+      			echo "<option value='".$row["IdCarrera"]."'>".$row["NomCarrera"]."</option>";
+    	} 
+		}
+
+	}
+
+	static public function ctrCargarListaEspecialidades(){
+		$tabla= "especialidades";
+
+		$stmt = ModeloAlumnos::mdlCargarListas($tabla);
+
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		if ($stmt->rowCount() > 0) {
+     		foreach ($results as $row) {
+      			echo "<option value='".$row["IdEspecialidad"]."'>".$row["NomEspecialidad"]."</option>";
+    	} 
+		}
+
+	}
+
+	static public function ctrCargarListaBecas(){
+		$tabla= "becas";
+
+		$stmt = ModeloAlumnos::mdlCargarListas($tabla);
+
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		if ($stmt->rowCount() > 0) {
+     		foreach ($results as $row) {
+      			echo "<option value='".$row["IdBeca"]."'>".$row["NomBeca"]."</option>";
+    	} 
+		}
+
+	}
+
+	static public function ctrCargarListaGrupos(){
+		$tabla= "grupos";
+
+		$stmt = ModeloAlumnos::mdlCargarListas($tabla);
+
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		if ($stmt->rowCount() > 0) {
+     		foreach ($results as $row) {
+      			echo "<option value='".$row["IdGrupo"]."'>".$row["NomGrupo"]."</option>";
+    	} 
+		}
+
+	}
+
+
 }

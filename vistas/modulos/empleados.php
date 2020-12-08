@@ -34,9 +34,6 @@ USUARIOS
                 <th>Ext</th>
                 <th>E-mail</th>
                 <th>Tipo Usuario</th>
-                
-                
-                
               </tr>
             </thead>
 
@@ -159,7 +156,7 @@ MODAL AGREGAR USUARIO
 
 
 <!--=========================
-MODAL EDITAR USUARIO 
+MODAL EDITAR USUARIO
 ==========================-->
 
 <div id="modalEditarUsuario" class="modal fade" role="dialog">

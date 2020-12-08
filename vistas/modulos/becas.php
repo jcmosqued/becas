@@ -68,7 +68,7 @@ UNIDADES ACADEMICAS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Edita el Nombre de la Beca" name="EditarNomBeca" id="NomBeca" required>
+                            <input type="text" class="form-control input-lg validarBeca" placeholder="Edita el Nombre de la Beca" name="EditarNomBeca" id="NomBeca" required>
                           </div>              
                         </div>
 
@@ -115,7 +115,7 @@ UNIDADES ACADEMICAS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Ingresar Nombre de la Beca" name="NomBeca" required>
+                            <input type="text" class="form-control input-lg validarBeca" placeholder="Ingresar Nombre de la Beca" name="NomBeca" required>
                           </div>              
                         </div>
 

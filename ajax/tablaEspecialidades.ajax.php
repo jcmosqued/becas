@@ -27,6 +27,7 @@ class TablaEspecialidades{
 				$datosJson .= '[
 				"'.$especialidades[$i]["IdEspecialidad"].'",
 				"'.$especialidades[$i]["NomEspecialidad"].'",
+				"'.$especialidades[$i]["NomCarrera"].'",
 				"'.$acciones.'"
 
 			],';

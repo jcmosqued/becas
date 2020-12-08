@@ -71,28 +71,44 @@ PROYECTOS
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
                             <input type="text" disabled="disabled" class="form-control input-lg" placeholder=""name="IdProyecto" id="IdProyecto" required>
-                            <input type="hidden" class="form-control input-lg" name="IdProtecto2" id="IdProyecto2">
+                            <input type="hidden" class="form-control input-lg" name="IdProyecto2" id="IdProyecto2">
                           </div>              
                         </div>
                         
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Editar Nombre del Proyecto" name="EditarNomProyecto" id="NomProyecto" required>
+                            <input type="text" class="form-control input-lg validarProyecto" placeholder="Editar Nombre del Proyecto" name="EditarNomProyecto" id="NomProyecto" required>
                           </div>              
                         </div>
 
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Editar ID del Empleado" name="EditarIdEmpleado" id="IdEmpleado" required>
+                            <select type="text" class="form-control input-lg" placeholder="Editar ID del Empleado" name="EditarIdEmpleado" id="IdEmpleado" required>
+                              <option value="0">Seleccione Empleado:</option>
+                              <?php
+ 
+                                $stmt = new ControladorProyectos();
+                                $stmt -> ctrCargarListaEmpleados()
+
+                                ?>
+                            </select>
                           </div>              
                         </div>
 
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Editar ID del &Aacute;rea" name="EditarIdArea" id="IdArea" required>
+                            <select type="text" class="form-control input-lg" placeholder="Editar ID del &Aacute;rea" name="EditarIdArea" id="IdArea" required>
+                              <option value="0">Seleccione Área:</option>
+                              <?php
+ 
+                                $stmt = new ControladorProyectos();
+                                $stmt -> ctrCargarListaAreas()
+
+                                ?>
+                            </select>
                           </div>              
                         </div>
 
@@ -120,7 +136,15 @@ PROYECTOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Editar ID del Cuatrimestre" name="EditarIdCuatrimestre" id="IdCuatrimestre" required>
+                            <select type="text" class="form-control input-lg" placeholder="Editar ID del Cuatrimestre" name="EditarIdCuatrimestre" id="IdCuatrimestre" required>
+                              <option value="0">Seleccione Cuatrimestre:</option>
+                              <?php
+ 
+                                $stmt = new ControladorProyectos();
+                                $stmt -> ctrCargarListaCuatrimestres()
+
+                                ?>
+                            </select>
                           </div>              
                         </div>
 
@@ -148,7 +172,12 @@ PROYECTOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Editar Sexo Requerido" name="EditarSexo" id="Sexo" required>
+                            <select type="text" class="form-control input-lg" placeholder="Editar Sexo Requerido" name="EditarSexo" id="Sexo" required>
+                              <option value="0">Seleccione Sexo Requerido:</option>
+                              <option value="Femenino">Femenino</option>
+                              <option value="Masculino">Masculino</option>
+                              <option value="Indiferente">Indiferente</option>
+                            </select>
                           </div>              
                         </div>
 
@@ -212,21 +241,37 @@ PROYECTOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Ingresar Nombre del Proyecto" name="nombreProyecto" required>
+                            <input type="text" class="form-control input-lg validarProyecto" placeholder="Ingresar Nombre del Proyecto" name="nombreProyecto" required>
                           </div>              
                         </div>
 
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Ingresar ID del Empleado" name="idEmpleado" required>
+                            <select type="text" class="form-control input-lg" placeholder="Ingresar ID del Empleado" name="idEmpleado" required>
+                              <option value="0">Seleccione Empleado:</option>
+                              <?php
+ 
+                                $stmt = new ControladorProyectos();
+                                $stmt -> ctrCargarListaEmpleados()
+
+                                ?>
+                            </select>
                           </div>              
                         </div>
 
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Ingresa el ID del &Aacute;rea" name="idArea" required>
+                            <select type="text" class="form-control input-lg" placeholder="Ingresa el ID del &Aacute;rea" name="idArea" required>
+                              <option value="0">Seleccione Área:</option>
+                              <?php
+ 
+                                $stmt = new ControladorProyectos();
+                                $stmt -> ctrCargarListaAreas()
+
+                                ?>
+                            </select>
                           </div>              
                         </div>
 
@@ -254,7 +299,15 @@ PROYECTOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Ingresar el ID del Cuatrimestre" name="idCuatrimestre" required>
+                            <select type="text" class="form-control input-lg" placeholder="Ingresar el ID del Cuatrimestre" name="idCuatrimestre" required>
+                              <option value="0">Seleccione Cuatrimestre:</option>
+                              <?php
+ 
+                                $stmt = new ControladorProyectos();
+                                $stmt -> ctrCargarListaCuatrimestres()
+
+                                ?>
+                              </select>
                           </div>              
                         </div>
 
@@ -282,7 +335,12 @@ PROYECTOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Ingresar Sexo Requerido para la Actividad" name="sexo" required>
+                            <select type="text" class="form-control input-lg" placeholder="Ingresar Sexo Requerido para la Actividad" name="sexo" required>
+                              <option value="0">Seleccione Sexo Requerido:</option>
+                              <option value="Femenino">Femenino</option>
+                              <option value="Masculino">Masculino</option>
+                              <option value="Indiferente">Indiferente</option>
+                            </select>
                           </div>              
                         </div>
 
@@ -320,7 +378,7 @@ PROYECTOS
             </div>
             
             <?php
-            //$eliminarProyecto = new ControladorUnidadesAcademicas();
-            //$eliminarProyecto-> ctrEliminarUnidadAcademica();
+            $eliminarProyecto = new ControladorProyectos();
+            $eliminarProyecto-> ctrEliminarProyecto();
             ?>
 

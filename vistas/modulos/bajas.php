@@ -1,5 +1,5 @@
 <!--=========================
-BAJAS
+BAJASs
 ==========================-->
 
 <div class="content-wrapper">
@@ -23,13 +23,13 @@ BAJAS
                       <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarBaja">Agregar Baja</button>
                     </div>
                     <div class="box-body">
-                      <table class="table table-bordered table-striped dt-responsive TablaUnidadesAcademicas" width="100%">
+                      <table class="table table-bordered table-striped dt-responsive TablaBajas" width="100%">
                         <thead>
                           <tr>
-                            <th>Id</th>
+                            <th>Id Baja</th>
                             <th>Fecha de la Baja</th>
-                            <th>Id Alumno</th>
-                            <th>Id Empleado</th>
+                            <th>Alumno</th>
+                            <th>Empleado</th>
                             <th>Tipo de Baja</th>
                             <th>Alcance</th>
                             <th>Motivo</th>
@@ -68,7 +68,7 @@ BAJAS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"></span>
-                            <input type="text" class="form-control input-lg" placeholder="Ingresar Fecha de la Baja" name="FechaBaja" required>
+                            <input type="text" class="form-control input-lg" placeholder="Ingresar Fecha de la Baja Ejem: 2020-08-19" name="FechaBaja" required>
                           </div>              
                         </div>
 
@@ -78,7 +78,16 @@ BAJAS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"></span>
-                            <input type="text" class="form-control input-lg" placeholder="Ingresar IdAlumno" name="IdAlumno" required>
+                            <select type="text" class="form-control input-lg validarBaja" placeholder="Ingresar IdAlumno" name="IdAlumno" required >
+                              <option value="0">Seleccione Alumno:</option>
+                              <?php
+ 
+                                $stmt = new ControladorBajas();
+                                $stmt -> ctrCargarListaAlumnos()
+
+                                ?>
+
+                            </select>
                           </div>              
                         </div>
 
@@ -87,7 +96,14 @@ BAJAS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"></span>
-                            <input type="text" class="form-control input-lg" placeholder="Ingresar IdEmpleado" name="IdEmpleado" required>
+                            <select type="text" class="form-control input-lg" placeholder="Ingresar IdEmpleado" name="IdEmpleado" required>
+                              <option value="0">Seleccione Empleado:</option>
+                              <?php
+ 
+                                $stmt = new ControladorBajas();
+                                $stmt -> ctrCargarListaEmpleados()
+                                ?>
+                            </select>
                           </div>              
                         </div>
 
@@ -114,12 +130,30 @@ BAJAS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"></span>
-                            <input type="text" class="form-control input-lg" placeholder="Ingresar Motivo" name="Motivo" required>
+                            <select type="text" class="form-control input-lg" placeholder="Ingresar Motivo" name="IdMotivo" required>
+                              <option value="0">Seleccione Motivo:</option>
+                              <?php
+ 
+                                $stmt = new ControladorBajas();
+                                $stmt -> ctrCargarListaMotivos()
+                                ?>
+                            </select>
                           </div>              
                         </div>
 
-
-
+                        <div class="form-group">
+                          <div class="input-group">
+                            <span class="input-group-addon"></span>
+                            <select type="text" class="form-control input-lg" placeholder="Ingresar Submotivo" name="IdSubmotivo" required>
+                              <option value="0">Seleccione Submotivo:</option>
+                              <?php
+ 
+                                $stmt = new ControladorBajas();
+                                $stmt -> ctrCargarListaSubmotivos()
+                                ?>
+                            </select>
+                          </div>              
+                        </div>
 
                         <div class="form-group">
                           <div class="input-group">
@@ -141,7 +175,7 @@ BAJAS
                   </form> 
 
                   <?php
-                    $crearBaja = new ControladorBaja();
+                    $crearBaja = new ControladorBajas();
                     $crearBaja-> ctrCrearBaja();
                   ?>
 
@@ -152,7 +186,7 @@ BAJAS
 
 
              <!--=========================
-            MODAL EDITAR Unidades Academicas 
+            MODAL EDITAR Unidades Academicas s
             ==========================-->
 
             
@@ -173,8 +207,8 @@ BAJAS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"></span>
-                            <input type="text" disabled="disabled" class="form-control input-lg" placeholder="Id" name="IdUnidadAcademica2" id="IdUnidadAcademica2" required>
-                            <input type="hidden" class="form-control input-lg" name="IdUnidadAcademica" id="IdUnidadAcademica">
+                            <input type="text" disabled="disabled" class="form-control input-lg" placeholder="Id" name="IdBaja2" id="IdBaja2" required>
+                            <input type="hidden" class="form-control input-lg" name="IdBaja" id="IdBaja">
                           </div>              
                         </div>
                         
@@ -192,7 +226,14 @@ BAJAS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"></span>
-                            <input type="text" class="form-control input-lg" placeholder="Edita Id Alumno" name="EditarIdAlumno" id="IdAlumno" required>
+                            <select type="text" class="form-control input-lg validarBaja" placeholder="Edita Id Alumno" name="EditarIdAlumno" id="IdAlumno" required>
+                              <option value="0">Seleccione Alumno:</option>
+                              <?php
+ 
+                                $stmt = new ControladorBajas();
+                                $stmt -> ctrCargarListaAlumnos()
+                                ?>
+                            </select>
                           </div>              
                         </div>
 
@@ -201,7 +242,14 @@ BAJAS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"></span>
-                            <input type="text" class="form-control input-lg" placeholder="Edita Id Empleado" name="EditarIdEmpleado" id="IdEmpleado" required>
+                            <select type="text" class="form-control input-lg" placeholder="Edita Id Empleado" name="EditarIdEmpleado" id="IdEmpleado" required>
+                              <option value="0">Seleccione Empleado:</option>
+                              <?php
+ 
+                                $stmt = new ControladorBajas();
+                                $stmt -> ctrCargarListaEmpleados()
+                                ?>
+                            </select>
                           </div>              
                         </div>
 
@@ -229,7 +277,14 @@ BAJAS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"></span>
-                            <input type="text" class="form-control input-lg" placeholder="Edita Motivo" name="EditarMotivo" id="Motivo" required>
+                            <select type="text" class="form-control input-lg" placeholder="Edita Motivo" name="EditarIdMotivo" id="IdMotivo" required>
+                              <option value="0">Seleccione Motivo:</option>
+                              <?php
+ 
+                                $stmt = new ControladorBajas();
+                                $stmt -> ctrCargarListaMotivos()
+                                ?>
+                            </select>
                           </div>              
                         </div>
 
@@ -256,19 +311,15 @@ BAJAS
                   </form> 
 
                   <?php
-                    $editarBaja = new ControladorBaja();
+                    $editarBaja = new ControladorBajas();
                     $editarBaja -> ctrEditarBaja();
                   ?>
 
                 </div>
               </div>
             </div>
-
-
-
-            
             <?php
-              $eliminarBaja = new ControladorBaja();
+              $eliminarBaja = new ControladorBajas();
               $eliminarBaja-> ctrEliminarBaja();
             ?>
     

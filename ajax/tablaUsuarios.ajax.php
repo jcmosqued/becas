@@ -20,7 +20,6 @@ class TablaUsuarios{
 		$usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
 
 
-
 		$datosJson = '{
 			"data":[';
 
@@ -34,7 +33,7 @@ class TablaUsuarios{
 			}
 			
 			//CARGA LA IMAGEN DEL USUARIO
-			$imgUsuario = "<img class='img-thumbnail' src='".$usuarios[$i]["foto"]."' width='50px'>";
+			//$imgUsuario = "<img class='img-thumbnail' src='".$usuarios[$i]["foto"]."' width='50px'>";
 
 			//CARGA LOS BOTONES DE EDITAR Y ELIMINAR
 			$acciones = "<div class = 'btn-group'> <button class='btn btn-warning btnEditarUsuario' NumEmpleado='".$usuarios[$i]["NumEmpleado"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pencil'></i></button> <button class='btn btn-danger btnEliminarUsuario' IdEmpleado='".$usuarios[$i]["IdEmpleado"]."' IdUsuario='".$usuarios[$i]["IdUsuario"]."'><i class='fa fa-times'></i></button> </div";
@@ -52,7 +51,6 @@ class TablaUsuarios{
 					"'.$usuarios[$i]["Ext"].'",
 					"'.$usuarios[$i]["CorreoElectronico"].'",
 					"'.$usuarios[$i]["TipoUsuario"].'"
-					
 					],';
 
 		}
@@ -61,6 +59,8 @@ class TablaUsuarios{
 
 		$datosJson.=']
 		}';
+
+
 
 		echo $datosJson;
 

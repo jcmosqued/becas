@@ -6,7 +6,7 @@ require_once "conexion.php";
 class ModeloAreas{
 
 	/*================================
-	MOSTRAR Areas
+	MOSTRAR Areas 
 	=================================*/
 
 	static public function mdlMostrarAreas($tabla, $item, $valor){
@@ -71,6 +71,19 @@ class ModeloAreas{
 		$stmt = null;
 
 	}
+
+	static public function mdlValidarDatos($tabla, $item, $valor){
+    $stmt = Conexion::conectar()->prepare("SELECT COUNT(*) FROM $tabla WHERE $item = :$item");  
+          $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+          $stmt ->execute();
+          $existencia = $stmt->fetchColumn();
+
+          if ($existencia > 0) {
+              return true;
+          } else {
+              return null;
+          }
+  }
 
 	static public function mdlEliminarAreas($tabla, $IdArea){
 

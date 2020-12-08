@@ -1,19 +1,10 @@
-
-/*$.ajax({
-	url:"ajax/tablaServiciosr.ajax.php",
-	success: function(respuesta){
-		
-		console.log(respuesta);
-	}
- 
-})*/
-
 /*===================================
-CARGAR LA TABLA DINAMICA DE USUARIOS 
+CARGAR LA TABLA DINAMICA DE MOTIVOS
 ===================================*/
 
-$('.tablaCarreras').DataTable({
-	"ajax": "ajax/tablaCarreras.ajax.php",
+
+$('.TablaMotivos').DataTable({
+	"ajax": "ajax/tablaMotivos.ajax.php",
 	"deferRender": true,
 	"retrieve": true,
 	"processing":true,
@@ -46,23 +37,20 @@ $('.tablaCarreras').DataTable({
 });
 
 
-
-
-
 /*===================================
-EDITAR CARRERAS
+EDITAR MOTIVOSs
 ===================================*/
 
-$('.tablaCarreras').on("click", ".btnEditarCarrera", function(){
+$('.TablaMotivos').on("click", ".btnEditarMotivo", function(){
 
-   var IdCarrera = $(this).attr("IdCarrera");
+   var IdMotivo = $(this).attr("IdMotivo");
    
    var datos = new FormData();
 
-   datos.append("IdCarrera", IdCarrera);
+   datos.append("IdMotivo", IdMotivo);
    
    $.ajax({
-	   url: "ajax/carreras.ajax.php",
+	   url: "ajax/motivos.ajax.php",
 	   method: "POST",
 	   data: datos,
 	   cache: false,
@@ -70,29 +58,25 @@ $('.tablaCarreras').on("click", ".btnEditarCarrera", function(){
 	   processData: false,
 	   dataType: "json",
 	   success: function(respuesta){
-		   $("#IdCarrera").val(respuesta["IdCarrera"]);
-		   $("#NomCarrera").val(respuesta["NomCarrera"]);
-		   $("#IdUnidadAcademica").val(respuesta["IdUnidadAcademica"]);
+		   $("#IdMotivo").val(respuesta["IdMotivo"]);
+		   $("#Motivo").val(respuesta["Motivo"]);
+		   $("EditarMotivo").val(respuesta["Motivo"]);
 		  
-		   $("#id1").val(respuesta["IdCarrera"]);
+		   $("#id1").val(respuesta["IdMotivo"]);
 	   }
    })
 
 })
 
-
 /*===================================
-ELIMINAR CATEGORIA 
+ELIMINAR CATEGORIA
 ===================================*/
 
-$('.tablaCarreras').on("click", ".btnEliminarCarrera", function(){
+$('.TablaMotivos').on("click", ".btnEliminarMotivo", function(){
 
-   var IdCarrera = $(this).attr("IdCarrera");
-   
-   
-	   
+   var IdMotivo = $(this).attr("IdMotivo");
    swal({
-	   title: "¿Está seguro de eliminar la Carrera?",
+	   title: "¿Está seguro de eliminar al Motivo?",
 	   text: "Una vez eliminado no se puede deshacer la operación",
 	   type: "warning",
 	   showCancelButton: true,
@@ -103,28 +87,26 @@ $('.tablaCarreras').on("click", ".btnEliminarCarrera", function(){
    }).then(function(result){
 
 	   if(result.value){
-		   window.location = "index.php?ruta=carreras&IdCarrera="+IdCarrera;
+		   window.location = "index.php?ruta=motivos&IdMotivo="+IdMotivo;
 	   }
    })
 
 
 })
 
-
 /*===================================
-REVISAR SI LA CARRERA YA EXISTE
+REVISAR SI EL MOTIVO YA EXISTE
 ===================================*/
-
-	$(".validarCarrera").change(function(){
+	$(".validarMotivo").change(function(){
 
 		$(".alert").remove();
-		var carrera = $(this).val();
+		var motivo = $(this).val();
 		var datos = new FormData();
-		datos.append("validarCarrera", carrera);
+		datos.append("validarMotivo", motivo);
 
 
 		$.ajax({
-			url:"ajax/carreras.ajax.php",
+			url:"ajax/motivos.ajax.php",
 			method: "POST",
 			data: datos,
 			cache: false,
@@ -132,8 +114,8 @@ REVISAR SI LA CARRERA YA EXISTE
 			processData:false,
 			success: function(respuesta){
 				if(respuesta == "true"){
-					$(".validarCarrera").parent().after('<div class="alert alert-warning">La Carrera ya existe</div>');
-					$(".validarCarrera").val("");
+					$(".validarMotivo").parent().after('<div class="alert alert-warning">El Motivo ya existe</div>');
+					$(".validarMotivo").val("");
 				}
 			}
 			

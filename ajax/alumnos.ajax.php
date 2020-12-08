@@ -26,9 +26,9 @@ class AjaxAlumnos{
 
 	public function ajaxValidarAlumno(){
 
-		$item = "alumno";
+		$item = "Matricula";
 		$valor = $_POST["validarAlumno"];
-		$respuesta = ControladorAlumnos::ctrMostrarAlumnos($item, $valor);
+		$respuesta = ControladorAlumnos::ctrValidarAlumnos($item, $valor);
 		echo json_encode($respuesta);
 	}
 
@@ -62,8 +62,8 @@ VALIDAR NO REPETIR ALUMNO
 
 if(isset($_POST["validarAlumno"])){ 
 
-	$valAlumno = new AjaxUsuarios();
-	$valAlumno -> ajaxValidarUsuario();
+	$valAlumno = new AjaxAlumnos();
+	$valAlumno -> ajaxValidarAlumno();
 
 }
 

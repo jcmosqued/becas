@@ -28,7 +28,7 @@ class AjaxUsuarios{
 
 		$item = "NumEmpleado";
 		$valor = $_POST["validarUsuario"];
-		$respuesta = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+		$respuesta = ControladorUsuarios::ctrValidarUsuarios($item, $valor);
 		echo json_encode($respuesta);
 	}
 

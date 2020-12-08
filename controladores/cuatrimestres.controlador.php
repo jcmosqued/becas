@@ -29,7 +29,7 @@ class ControladorCuatrimestres{
 				echo '<script>
 					swal({
 						type: "success",
-						title: "El cuatrimestre se ha guardado correctamente",
+						title: "El cuatrimestre se ha Guardado correctamente",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result){
@@ -42,7 +42,7 @@ class ControladorCuatrimestres{
 				echo '<script>
 					swal({
 						type: "error",
-						title: "El registro no se guardo, intentalo nuevamente",
+						title: "El registro no se Guardo, intentalo nuevamente",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result){
@@ -64,8 +64,8 @@ class ControladorCuatrimestres{
 
 		if(isset($_POST['editarNombreCuatrimestre'])){
 
-			$datos = array(	"IdCuatrimestre"=>$_POST["idCuatrimestre"],
-							"NomCuatrimestre"=>$_POST["editarNombreCuatrimestre"]);
+			$datos = array("IdCuatrimestre"=>$_POST["idCuatrimestre2"], 
+						"NomCuatrimestre"=>$_POST["editarNombreCuatrimestre"]);
 
 			$respuesta = ModeloCuatrimestres::mdlEditarCuatrimestre("Cuatrimestres", $datos);
 
@@ -74,7 +74,7 @@ class ControladorCuatrimestres{
 				echo '<script>
 					swal({
 						type: "success",
-						title: "El cuatrimestre se ha guardado correctamente",
+						title: "El cuatrimestre se ha Guardado correctamente",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result){
@@ -87,7 +87,7 @@ class ControladorCuatrimestres{
 				echo '<script>
 					swal({
 						type: "error",
-						title: "El registro no se guardo, intentalo nuevamente",
+						title: "El registro no se Guardo, intentalo nuevamente",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result){
@@ -113,5 +113,15 @@ class ControladorCuatrimestres{
 
 		}
 
+	}
+
+	/*================================
+	VALIDAR CUATRIMESTRE
+	=================================*/
+	static public function ctrValidarCuatrimestres($item, $valor){
+		$tabla ="cuatrimestres";
+
+		$respuesta = ModeloCuatrimestres::mdlValidarDatos($tabla, $item, $valor);
+		return $respuesta;
 	}
 }

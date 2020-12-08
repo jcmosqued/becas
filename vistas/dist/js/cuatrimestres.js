@@ -89,7 +89,7 @@ $('.TablaCuatrimestres').on("click", ".btnEliminarCuatrimestre", function(){
    var IdCuatrimestre = $(this).attr("idCuatrimestre");
 	   
    swal({
-	   title: "¿Está seguro de elimnar el cuatrimestre?",
+	   title: "¿Está seguro de eliminar el Cuatrimestre?",
 	   text: "Una vez eliminado no se puede deshacer la operación",
 	   type: "warning",
 	   showCancelButton: true,
@@ -104,5 +104,34 @@ $('.TablaCuatrimestres').on("click", ".btnEliminarCuatrimestre", function(){
 	   }
    })
 
-
 })
+
+/*===================================
+REVISAR SI LA CARRERA YA EXISTE
+===================================*/
+
+	$(".validarCuatrimestre").change(function(){
+
+		$(".alert").remove();
+		var cuatrimestre = $(this).val();
+		var datos = new FormData();
+		datos.append("validarCuatrimestre", cuatrimestre);
+
+
+		$.ajax({
+			url:"ajax/cuatrimestres.ajax.php",
+			method: "POST",
+			data: datos,
+			cache: false,
+			contentType: false,
+			processData:false,
+			success: function(respuesta){
+				if(respuesta == "true"){
+					$(".validarCuatrimestre").parent().after('<div class="alert alert-warning">El Cuatrimestre ya existe</div>');
+					$(".validarCuatrimestre").val("");
+				}
+			}
+			
+		})
+
+	})

@@ -35,7 +35,7 @@ class TablaCarreras{
 			$datosJson .= '[
 					"'.$carreras[$i]["IdCarrera"].'",
                     "'.$carreras[$i]["NomCarrera"].'",
-                    "'.$carreras[$i]["IdUnidadAcademica"].'",
+                    "'.$carreras[$i]["NomUnidadAcademica"].'",
                     "'.$acciones.'"
 					],';
 

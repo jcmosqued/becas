@@ -18,6 +18,26 @@ class ControladorCarreras{
 	}
 
 	/*================================
+	Listas
+	=================================*/
+
+	static public function ctrCargarListas(){
+		$tabla = "unidadesacademicas";
+
+		$stmt = ModeloCarreras::mdlCargarListas($tabla);
+
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		if ($stmt->rowCount() > 0) {
+     		foreach ($results as $row) {
+      			echo "<option value='".$row["IdUnidadAcademica"]."'>".$row["NomUnidadAcademica"]."</option>";
+    	} 
+		}
+
+	}
+
+
+	/*================================
 	EDITAR CARRERAS
 	=================================*/
 
@@ -85,7 +105,7 @@ class ControladorCarreras{
 				echo '<script>
 					swal({
 						type: "success",
-						title: "La carrera se ha guardado correctamente",
+						title: "La carrera se ha Guardado correctamente",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result){
@@ -98,7 +118,7 @@ class ControladorCarreras{
 				echo '<script>
 					swal({
 						type: "error",
-						title: "El registro no se guardo, intentalo nuevamente",
+						title: "El registro no se Guardo, intentalo nuevamente",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result){
@@ -127,6 +147,17 @@ class ControladorCarreras{
 
 		}
 
+	}
+
+
+	/*================================
+	VALIDAR CARRERAS
+	=================================*/
+	static public function ctrValidarCarreras($item, $valor){
+		$tabla ="carreras";
+
+		$respuesta = ModeloCarreras::mdlValidarDatos($tabla, $item, $valor);
+		return $respuesta;
 	}
 
 

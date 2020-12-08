@@ -31,7 +31,7 @@
 
                     <li class="active">
                         <a href="index.php?ruta=areas">
-                                <span style="color: #000000; font-family: Helvetica;"> <b>Areas </b></span>
+                                <span style="color: #000000; font-family: Helvetica;"> <b>Áreas </b></span>
                         </a>
                     </li>
 
@@ -70,7 +70,7 @@
 
                     <li class="active">
                         <a href="index.php?ruta=unidadesacademicas">
-                                <span style="color: #000000; font-family: Helvetica;"> <b>Unidades Academicas </b></span>
+                                <span style="color: #000000; font-family: Helvetica;"> <b>Unidades Académicas </b></span>
                         </a>
                     </li>
 

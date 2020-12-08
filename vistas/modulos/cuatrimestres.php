@@ -59,7 +59,7 @@ MODAL AGREGAR CUATRIMESTRE
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                <input type="text" class="form-control input-lg" placeholder="Ingresar nombre del Cuatrimestre" name="nombreCuatrimestre" required>
+                <input type="text" class="form-control input-lg validarCuatrimestre" placeholder="Ingresar nombre del Cuatrimestre" name="nombreCuatrimestre" required>
               </div>              
             </div>
 
@@ -113,7 +113,7 @@ MODAL EDITAR CUATRIMESTRE
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                <input type="text" class="form-control input-lg" placeholder="Ingresar Nombre" name="editarNombreCuatrimestre" id="nombreCuatrimestre" required>
+                <input type="text" class="form-control input-lg validarCuatrimestre" placeholder="Ingresar Nombre" name="editarNombreCuatrimestre" id="nombreCuatrimestre" required>
               </div>              
             </div>
             
@@ -140,5 +140,3 @@ MODAL EDITAR CUATRIMESTRE
   $eliminarUsuario = new ControladorCuatrimestres();
   $eliminarUsuario-> ctrEliminarCuatrimestre();
 ?>
-
-

@@ -10,6 +10,8 @@ require_once "controladores/proyectos.controlador.php";
 require_once "controladores/areas.controlador.php";
 require_once "controladores/carreras.controlador.php";
 require_once "controladores/alumnos.controlador.php";
+require_once "controladores/bajas.controlador.php";
+require_once "controladores/motivos.controlador.php";
 
 
 require_once "modelos/usuarios.modelo.php";
@@ -21,6 +23,8 @@ require_once "modelos/proyectos.modelo.php";
 require_once "modelos/carreras.modelo.php";
 require_once "modelos/areas.modelo.php";
 require_once "modelos/alumnos.modelo.php";
+require_once "modelos/bajas.modelo.php";
+require_once "modelos/motivos.modelo.php";
 
 $plantilla = new ControladorPlantilla();
 $plantilla ->plantilla();

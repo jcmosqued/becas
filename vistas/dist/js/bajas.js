@@ -1,21 +1,9 @@
 /*===================================
-CARGAR LA TABLA DINAMICA DE UNIDADES ACADEMICAS
+CARGAR LA TABLA DINAMICA DE BAJASs
 ===================================*/
 
-
-
-
-/*$.ajax({
-	url:"ajax/tablaUnidadesAcademicas.ajax.php",
-	success: function(respuesta){
-		$('.TablaUnidadesAcademicas').append(respuesta);
-		console.log(respuesta);
-	}
- 
-});*/
-
-$('.TablaUnidadesAcademicas').DataTable({
-	"ajax":"ajax/tablaUnidadesAcademicas.ajax.php",
+$('.TablaBajas').DataTable({
+	"ajax":"ajax/tablaBajas.ajax.php",
 	"deferRender": true,
 	"retrieve": true,
 	"processing":true,
@@ -48,19 +36,19 @@ $('.TablaUnidadesAcademicas').DataTable({
 });
 
 /*===================================
-REVISAR SI EL UNIDADES ACADEMICAS YA EXISTE
+REVISAR SI LA BAJA YA EXISTE
 ===================================*/
 
-	$(".validarUnidad").change(function(){
+$(".validarBaja").change(function(){
 
 		$(".alert").remove();
-		var unidadAcademica = $(this).val();
+		var baja = $(this).val();
 		var datos = new FormData();
-		datos.append("validarUnidad", unidadAcademica);
+		datos.append("validarBaja", baja);
 
 
 		$.ajax({
-			url:"ajax/unidadesAcademicas.ajax.php",
+			url:"ajax/bajas.ajax.php",
 			method: "POST",
 			data: datos,
 			cache: false,
@@ -68,8 +56,8 @@ REVISAR SI EL UNIDADES ACADEMICAS YA EXISTE
 			processData:false,
 			success: function(respuesta){
 				if(respuesta == "true"){
-					$(".validarUnidad").parent().after('<div class="alert alert-warning">La Unidad Académica ya existe</div>');
-					$(".validarUnidad").val("");
+					$(".validarBaja").parent().after('<div class="alert alert-warning">La baja ya existe</div>');
+					$(".validarBaja").val("0");
 				}
 			}
 			
@@ -78,55 +66,54 @@ REVISAR SI EL UNIDADES ACADEMICAS YA EXISTE
 	})
 
 	/*===================================
-EDITAR UNIDADES ACADEMICAS
+EDITAR BAJAS
 ===================================*/
 
 
-$('.TablaUnidadesAcademicas').on("click", ".btnEditarUnidadAcademica", function(){
+$('.TablaBajas').on("click", ".btnEditarBaja", function(){
 	
-	var IdUnidadAcademica = $(this).attr("IdUnidadAcademica");
-	var NomUnidadAcademica = $(this).attr("NomUnidadAcademica");
-	
-	$("#IdUnidadAcademica").val(IdUnidadAcademica);
-	$("#IdUnidadAcademica2").val(IdUnidadAcademica);
-	$("#NomUnidadAcademica").val(NomUnidadAcademica);
+	 var IdBaja = $(this).attr("IdBaja");
+   
+   var datos = new FormData();
 
+   datos.append("IdBaja", IdBaja);
 
-	/*var datos = new FormData();
-
-	datos.append("IdUnidadAcademica", IdUnidadAcademica);
-	
 	$.ajax({
-		url:"ajax/unidadesAcademicas.ajax.php",
-		method: "POST",
-		data: datos,
-		cache: false,
-		contentType: false,
-		processData: false,
-		dataType: "json",
-		success: function(respuesta){
-			$("#IdUnidadAcademica").val(respuesta["IdUnidadAcademica"]);
-			$("#NomUnidadAcademica").val(respuesta["NomUnidadAcademica"]);
-			
-
-		}
-	})*/
-
+	   url: "ajax/bajas.ajax.php",
+	   method: "POST",
+	   data: datos,
+	   cache: false,
+	   contentType: false,
+	   processData: false,
+	   dataType: "json",
+	   success: function(respuesta){  
+		$("#IdBaja").val(respuesta["IdBaja"]);
+		$("#IdBaja2").val(respuesta["IdBaja"]);
+		$("#FechaBaja").val(respuesta["FechaBaja"]);
+		$("#IdAlumno").val(respuesta["IdAlumno"]);
+		$("#IdEmpleado").val(respuesta["IdEmpleado"]);
+		$("#TipoBaja").val(respuesta["TipoBaja"]);
+		$("#Alcance").val(respuesta["Alcance"]);
+		$("#IdMotivo").val(respuesta["IdMotivo"]);
+		$("#Observaciones").val(respuesta["Observaciones"]);
+	   }
+   })
+	
 })
 
 
-
 /*===================================
-ELIMINAR CATEGORIA
+ELIMINAR BAJA
 ===================================*/
 
-$('.TablaUnidadesAcademicas').on("click", ".btnEliminarUnidadAcademica", function(){
-   var IdUnidadAcademica = $(this).attr("IdUnidadAcademica");
+$('.TablaBajas').on("click", ".btnEliminarBaja", function(){
+
+   var IdBaja = $(this).attr("IdBaja");
    
    
 	   
    swal({
-	   title: "¿Está seguro de eliminar la Unidad Académica?",
+	   title: "¿Está seguro de eliminar la Baja?",
 	   text: "Una vez eliminado no se puede deshacer la operación",
 	   type: "warning",
 	   showCancelButton: true,
@@ -137,7 +124,7 @@ $('.TablaUnidadesAcademicas').on("click", ".btnEliminarUnidadAcademica", functio
    }).then(function(result){
 
 	   if(result.value){
-		   window.location = "index.php?ruta=unidadesacademicas&IdUnidadAcademica="+IdUnidadAcademica;
+		   window.location = "index.php?ruta=bajas&IdBaja="+IdBaja;
 	   }
    })
 

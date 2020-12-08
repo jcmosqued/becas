@@ -48,13 +48,13 @@ $('.TablaBecas').DataTable({
 });
 
 /*===================================
-REVISAR SI EL Becas YA EXISTE
+REVISAR SI LA BECA YA EXISTE
 ===================================*/
 
 	$(".validarBeca").change(function(){
 
 		$(".alert").remove();
-		var unidadAcademica = $(this).val();
+		var beca = $(this).val();
 		var datos = new FormData();
 		datos.append("validarBeca", beca);
 
@@ -67,8 +67,7 @@ REVISAR SI EL Becas YA EXISTE
 			contentType: false,
 			processData:false,
 			success: function(respuesta){
-				console.log(respuesta);
-				if(respuesta != "false"){
+				if(respuesta == "true"){
 					$(".validarBeca").parent().after('<div class="alert alert-warning">La Beca ya existe</div>');
 					$(".validarBeca").val("");
 				}

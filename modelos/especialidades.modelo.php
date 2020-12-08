@@ -5,7 +5,7 @@ require_once "conexion.php";
 class ModeloEspecialidades{
 
 	/*================================
-	MOSTRAR ESPECIALIDADES
+	MOSTRAR ESPECIALIDADES 
 	=================================*/
 	static public function mdlMostrarEspecialidades($tabla, $item, $valor){
 
@@ -18,7 +18,7 @@ class ModeloEspecialidades{
 
 		} else {
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY IdEspecialidad DESC");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla INNER JOIN carreras ON $tabla.IdCarrera = carreras.IdCarrera ORDER BY IdEspecialidad DESC");
 			$stmt->execute();
 			return $stmt->fetchAll();
 			
@@ -54,10 +54,12 @@ class ModeloEspecialidades{
 	=================================*/
 	static public function mdlEditarEspecialidad($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET NomEspecialidad = :nombre WHERE IdEspecialidad = :idEspecialidad;");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET NomEspecialidad = :nombre, IdCarrera = :idcarrera  WHERE IdEspecialidad = :idEspecialidad;");
 		
 		$stmt->bindParam(":idEspecialidad", $datos["IdEspecialidad"], PDO::PARAM_STR);
 		$stmt->bindParam(":nombre", $datos["NomEspecialidad"], PDO::PARAM_STR);
+		$stmt->bindParam(":idcarrera", $datos["IdCarrera"], PDO::PARAM_STR);
+
 
 		if($stmt->execute()){
 			return "ok";
@@ -87,5 +89,28 @@ class ModeloEspecialidades{
 		$stmt = null;
 
 	}
+
+	static public function mdlCargarListaCarreras($tabla){
+    $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+                  $stmt->execute();
+
+                  return $stmt;
+    $stmt->close();
+    $stmt=null;
+
+  }
+
+  static public function mdlValidarDatos($tabla, $item, $valor){
+    $stmt = Conexion::conectar()->prepare("SELECT COUNT(*) FROM $tabla WHERE $item = :$item");  
+          $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+          $stmt ->execute();
+          $existencia = $stmt->fetchColumn();
+
+          if ($existencia > 0) {
+              return true;
+          } else {
+              return null;
+          }
+  	}
 
 }

@@ -6,7 +6,7 @@ require_once "../modelos/proyectos.modelo.php";
 class TablaProyectos{
 
 	/*===================================
-	MOSTRAR LA TABLA PROYECTOS
+	MOSTRAR LA TABLA PROYECTOSs
 	===================================*/
 	public function mostrarTablaProyectos(){
 
@@ -28,7 +28,7 @@ class TablaProyectos{
 			}
 
 			//CARGA LOS BOTONES DE EDITAR Y ELIMINAR
-			$acciones = "<div class = 'btn-group'> <button class='btn btn-warning btnEditarProyecto' IdProyecto='".$proyectos[$i]["IdProyecto"]."' NomProyecto='".$proyectos[$i]["NomProyecto"]."' data-toggle='modal' data-target='#modalEditarProyecto'><i class='fa fa-pencil'></i></div>";
+			$acciones = "<div class = 'btn-group'> <button class='btn btn-warning btnEditarProyecto' IdProyecto='".$proyectos[$i]["IdProyecto"]."' NomProyecto='".$proyectos[$i]["NomProyecto"]."' data-toggle='modal' data-target='#modalEditarProyecto'><i class='fa fa-pencil'></i></button> <button class='btn btn-danger btnEliminarProyecto' IdProyecto='".$proyectos[$i]["IdProyecto"]."'><i class='fa fa-times'></i></button> </div>";
 
 			//CARGA EL RESTO DE CAMPOS DE LA TABLA
 			$datosJson .= '[
@@ -45,7 +45,7 @@ class TablaProyectos{
 					"'.$proyectos[$i]["Duracion"].'",
 					"'.$proyectos[$i]["CantidadAlumnos"].'",
 					"'.$proyectos[$i]["Sexo"].'",
-					"'.$proyectos[$i]["CarrerasPreferentes"].'",
+					"'.$proyectos[$i]["CarrerasPreferidas"].'",
 					"'.$proyectos[$i]["Observaciones"].'",
 					"'.$proyectos[$i]["Estatus"].'"
 					

@@ -29,12 +29,12 @@ ALUMNOS
                             <th>Id Alumnos</th>
                             <th>Nombre</th>
                             <th>Matricula</th>
-                            <th>Id Unidad Academica</th>
-                            <th>Id Carrera</th>
-                            <th>Id Especialidad</th>
+                            <th>Unidad Academica</th>
+                            <th>Carrera</th>
+                            <th>Especialidad</th>
                             <th>Turno</th>
                             <th>Grupo</th>
-                            <th>Id Beca</th>
+                            <th>Beca</th>
                             <th>Horas Servicio Becario</th>
                             <th>Estado</th>
                             <th>Acciones</th>
@@ -49,7 +49,7 @@ ALUMNOS
 
 
             <!--=========================
-            MODAL AGREGAR Unidades Academicas 
+            MODAL AGREGAR ALUMNOS
             ==========================-->
 
             <div id="modalAgregarAlumno" class="modal fade" role="dialog">
@@ -78,7 +78,7 @@ ALUMNOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Matricula" name="Matricula" required>
+                            <input type="text" class="form-control input-lg validarAlumno" placeholder="Matricula" name="Matricula" required minlength="8" maxlength="8">
                           </div>              
                         </div>
 
@@ -87,7 +87,14 @@ ALUMNOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Id Unidad Academica" name="IdUnidadAcademica" required>
+                            <select type="text" class="form-control input-lg" placeholder="Id Unidad Academica" name="IdUnidadAcademica" required>
+                              <option value="0">Seleccione Unidad Academica:</option>
+                              <?php
+ 
+                                $stmt = new ControladorAlumnos();
+                                $stmt -> ctrCargarListaUnidadAcademicas()
+                                ?>
+                            </select>
                           </div>              
                         </div>
 
@@ -95,7 +102,14 @@ ALUMNOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Id Carrera" name="IdCarrera" required>
+                            <select type="text" class="form-control input-lg" placeholder="Id Carrera" name="IdCarrera" required>
+                              <option value="0">Seleccione Carrera:</option>
+                              <?php
+ 
+                                $stmt = new ControladorAlumnos();
+                                $stmt -> ctrCargarListaCarreras()
+                                ?>
+                            </select>
                           </div>              
                         </div>
 
@@ -103,7 +117,15 @@ ALUMNOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Id Especialidad" name="IdEspecialidad" required>
+                            <select type="text" class="form-control input-lg" placeholder="Id Especialidad" name="IdEspecialidad" required>
+                              <option value="0">Seleccione Especialidad:</option>
+                                 <?php
+ 
+                                $stmt = new ControladorAlumnos();
+                                $stmt -> ctrCargarListaEspecialidades()
+                                ?>
+
+                            </select>
                           </div>              
                         </div>
 
@@ -111,7 +133,11 @@ ALUMNOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Turno" name="Turno" required>
+                            <select type="text" class="form-control input-lg" placeholder="Turno" name="Turno" required>
+                              <option value="0">Seleccione Turno:</option>
+                              <option value="Mat">Matutino</option>
+                              <option value="Ves">Vespertino</option>
+                              </select>
                           </div>              
                         </div>
 
@@ -119,7 +145,14 @@ ALUMNOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Grupo" name="Grupo" required>
+                            <select type="text" class="form-control input-lg" placeholder="Grupo" name="Grupo" required>
+                              <option value="0">Seleccione Grupo:</option>
+                                 <?php
+ 
+                                $stmt = new ControladorAlumnos();
+                                $stmt -> ctrCargarListaGrupos()
+                                ?>
+                            </select>
                           </div>              
                         </div>
 
@@ -127,7 +160,16 @@ ALUMNOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Id Beca" name="IdBeca" required>
+                            <select type="text" class="form-control input-lg" placeholder="Id Beca" name="IdBeca" required>
+                              <option value="0">Seleccione Beca:</option>
+
+                                 <?php
+ 
+                                $stmt = new ControladorAlumnos();
+                                $stmt -> ctrCargarListaBecas()
+                                ?>
+                              
+                            </select>
                           </div>              
                         </div>
 
@@ -170,7 +212,7 @@ ALUMNOS
 
 
             <!--=========================
-            MODAL EDITAR Unidades Academicas 
+            MODAL ALUMNOS
             ==========================-->
 
             
@@ -209,7 +251,7 @@ ALUMNOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Matricula" name="Matricula" id="Matricula" required>
+                            <input type="text" class="form-control input-lg validarAlumno" placeholder="Matricula" name="Matricula" id="Matricula" required minlength="8" maxlength="8">
                           </div>              
                         </div>
 
@@ -217,7 +259,14 @@ ALUMNOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="IdUnidadAcademica" name="IdUnidadAcademica" id="IdUnidadAcademica" required>
+                            <select type="text" class="form-control input-lg" placeholder="IdUnidadAcademica" name="IdUnidadAcademica" id="IdUnidadAcademica" required>
+                              <option value="0">Seleccione Unidad Academica:</option>
+                              <?php
+ 
+                                $stmt = new ControladorAlumnos();
+                                $stmt -> ctrCargarListaUnidadAcademicas()
+                                ?>
+                            </select>
                           </div>              
                         </div>
 
@@ -225,7 +274,14 @@ ALUMNOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="IdCarrera" name="IdCarrera" id="IdCarrera" required>
+                            <select type="text" class="form-control input-lg" placeholder="IdCarrera" name="IdCarrera" id="IdCarrera" required>
+                              <option value="0">Seleccione Carrera:</option>
+                              <?php
+ 
+                                $stmt = new ControladorAlumnos();
+                                $stmt -> ctrCargarListaCarreras()
+                                ?>
+                            </select>
                           </div>              
                         </div>
 
@@ -233,7 +289,16 @@ ALUMNOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="IdEspecialidad" name="IdEspecialidad" id="IdEspecialidad" required>
+                            <select type="text" class="form-control input-lg" placeholder="IdEspecialidad" name="IdEspecialidad" id="IdEspecialidad" required>
+                              <option value="0">Seleccione Especialidad:</option>
+                               <?php
+ 
+                                $stmt = new ControladorAlumnos();
+                                $stmt -> ctrCargarListaEspecialidades()
+                                ?>
+
+
+                            </select>
                           </div>              
                         </div>
 
@@ -241,7 +306,11 @@ ALUMNOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Turno" name="Turno" id="Turno" required>
+                            <select type="text" class="form-control input-lg" placeholder="Turno" name="Turno" id="Turno" required>
+                              <option value="0">Seleccione Turno:</option>
+                              <option value="Mat">Matutino</option>
+                              <option value="Ves">Vespertino</option>
+                            </select>
                           </div>              
                         </div>
 
@@ -249,7 +318,14 @@ ALUMNOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="Grupo" name="Grupo" id="Grupo" required>
+                            <select type="text" class="form-control input-lg" placeholder="Grupo" name="Grupo" id="Grupo" required>
+                              <option value="0">Seleccione Grupo:</option>
+                                 <?php
+ 
+                                $stmt = new ControladorAlumnos();
+                                $stmt -> ctrCargarListaGrupos()
+                                ?>
+                            </select>
                           </div>              
                         </div>
 
@@ -258,7 +334,15 @@ ALUMNOS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input type="text" class="form-control input-lg" placeholder="IdBeca" name="IdBeca" id="IdBeca" required>
+                            <select type="text" class="form-control input-lg" placeholder="IdBeca" name="IdBeca" id="IdBeca" required>
+                              <option value="0">Seleccione Beca:</option>
+                              <?php
+ 
+                                $stmt = new ControladorAlumnos();
+                                $stmt -> ctrCargarListaBecas()
+                                ?>
+
+                            </select>
                           </div>              
                         </div>
 
@@ -269,9 +353,6 @@ ALUMNOS
                             <input type="text"  class="form-control input-lg" placeholder="HorasServicioBecario" name="HorasServicioBecario" id="HorasServicioBecario" required>
                           </div>              
                         </div>
-
-
-
 
 
                       </div>
@@ -293,16 +374,9 @@ ALUMNOS
                 </div>
               </div>
             </div>
-            
-
-            
-            
+        
             
             <?php
               $eliminarAlumno = new ControladorAlumnos();
               $eliminarAlumno-> ctrEliminarAlumno();
             ?>
-    
-  
-
-

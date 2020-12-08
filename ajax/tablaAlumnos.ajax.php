@@ -9,7 +9,7 @@ require_once "../modelos/alumnos.modelo.php";
 class TablaAlumnos{
 
 	/*===================================
-	MOSTRAR LA TABLA DE CATEGORIAS
+	MOSTRAR LA TABLA DE CATEGORIAS 
 	===================================*/
 
 	public function mostrarTablaAlumnos(){
@@ -32,22 +32,22 @@ class TablaAlumnos{
 			} else{
 				$estado = "<button class= 'btn btn-success btn-xs btnActivar' estadoAlumno='0' IdAlumno=".$alumnos[$i]["IdAlumno"].">Activado</button>";	
 			}
-			
+			 
 
 			//CARGA LOS BOTONES DE EDITAR Y ELIMINAR
-			$acciones = "<div class = 'btn-group'> <button class='btn btn-warning btnEditarAlumno' IdAlumno='".$alumnos[$i]["IdAlumno"]."' NomAlumno='".$alumnos[$i]["NomAlumno"]."' Matricula='".$alumnos[$i]["Matricula"]."' IdUnidadAcademica='".$alumnos[$i]["IdUnidadAcademica"]."' IdCarrera='".$alumnos[$i]["IdCarrera"]."' IdEspecialidad='".$alumnos[$i]["IdEspecialidad"]."' Turno='".$alumnos[$i]["Turno"]."' Grupo='".$alumnos[$i]["Grupo"]."' IdBeca='".$alumnos[$i]["IdBeca"]."' HorasServicioBecario='".$alumnos[$i]["HorasServicioBecario"]."' data-toggle='modal' data-target='#modalEditarAlumno'><i class='fa fa-pencil'></i></button> <button class='btn btn-danger btnEliminarAlumno' IdAlumno='".$alumnos[$i]["IdAlumno"]."' IdAlumno='".$alumnos[$i]["IdAlumno"]."'><i class='fa fa-times'></i></button> </div";
+			$acciones = "<div class = 'btn-group'> <button class='btn btn-warning btnEditarAlumno' IdAlumno='".$alumnos[$i]["IdAlumno"]."' NomAlumno='".$alumnos[$i]["NomAlumno"]."' Matricula='".$alumnos[$i]["Matricula"]."' IdUnidadAcademica='".$alumnos[$i]["IdUnidadAcademica"]."' IdCarrera='".$alumnos[$i]["IdCarrera"]."' IdEspecialidad='".$alumnos[$i]["IdEspecialidad"]."' Turno='".$alumnos[$i]["Turno"]."' Grupo='".$alumnos[$i]["IdGrupo"]."' IdBeca='".$alumnos[$i]["IdBeca"]."' HorasServicioBecario='".$alumnos[$i]["HorasServicioBecario"]."' data-toggle='modal' data-target='#modalEditarAlumno'><i class='fa fa-pencil'></i></button> <button class='btn btn-danger btnEliminarAlumno' IdAlumno='".$alumnos[$i]["IdAlumno"]."' IdAlumno='".$alumnos[$i]["IdAlumno"]."'><i class='fa fa-times'></i></button> </div>";
 
 			//CARGA EL RESTO DE CAMPOS DE LA TABLA
 			$datosJson .= '[
 					"'.$alumnos[$i]["IdAlumno"].'",
 					"'.$alumnos[$i]["NomAlumno"].'",
 					"'.$alumnos[$i]["Matricula"].'",
-					"'.$alumnos[$i]["IdUnidadAcademica"].'",
-					"'.$alumnos[$i]["IdCarrera"].'",
-					"'.$alumnos[$i]["IdEspecialidad"].'",
+					"'.$alumnos[$i]["NomUnidadAcademica"].'",
+					"'.$alumnos[$i]["NomCarrera"].'",
+					"'.$alumnos[$i]["NomEspecialidad"].'",
 					"'.$alumnos[$i]["Turno"].'",
-					"'.$alumnos[$i]["Grupo"].'",
-					"'.$alumnos[$i]["IdBeca"].'",
+					"'.$alumnos[$i]["NomGrupo"].'",
+					"'.$alumnos[$i]["NomBeca"].'",
 					"'.$alumnos[$i]["HorasServicioBecario"].'",
 					"'.$estado.'",
 					"'.$acciones.'"

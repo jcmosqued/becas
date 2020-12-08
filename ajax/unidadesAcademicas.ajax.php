@@ -13,9 +13,9 @@ class AjaxUnidadAcademica{
 
 	public function ajaxValidarUnidadesAcademicas(){
 
-		$item = "unidadAcademica";
-		$valor = $_POST["validarUnidadAcademica"];
-		$respuesta = ControladorUnidadesAcademicas::ctrMostrarUnidadesAcademicas($item, $valor);
+		$item = "NomUnidadAcademica";
+		$valor = $_POST["validarUnidad"];
+		$respuesta = ControladorUnidadesAcademicas::ctrValidarUnidadesAcademicas($item, $valor);
 		echo json_encode($respuesta);
 	}
 
@@ -31,8 +31,9 @@ class AjaxUnidadAcademica{
 		echo json_encode($respuesta);
 	}
 
+}
 
-	/*===================================
+/*===================================
 EDITAR UNIDAD Academica
 ===================================*/
 
@@ -48,13 +49,11 @@ if(isset($_POST["IdUnidadAcademica"])){
 VALIDAR NO REPETIR UNIDAD ACADEMICA
 ===================================*/
 
-if(isset($_POST["validarUnidadAcademica"])){ 
+if(isset($_POST["validarUnidad"])){ 
 
+	$valUnidad = new ajaxUnidadAcademica();
+	$valUnidad -> ajaxValidarUnidadesAcademicas();
 	
-
-}
-
-
 
 }
 

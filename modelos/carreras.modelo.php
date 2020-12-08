@@ -22,7 +22,7 @@ class ModeloCarreras{
 
 		} else {
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY IdCarrera DESC");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla INNER JOIN unidadesacademicas ON $tabla.IdUnidadAcademica = unidadesacademicas.IdUnidadAcademica ORDER BY IdCarrera DESC");
 			$stmt->execute();
 			return $stmt->fetchAll();
 			
@@ -32,6 +32,19 @@ class ModeloCarreras{
 		$stmt=null;
 
 	}
+
+	static public function mdlValidarDatos($tabla, $item, $valor){
+    $stmt = Conexion::conectar()->prepare("SELECT COUNT(*) FROM $tabla WHERE $item = :$item");  
+          $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+          $stmt ->execute();
+          $existencia = $stmt->fetchColumn();
+
+          if ($existencia > 0) {
+              return true;
+          } else {
+              return null;
+          }
+  	}
 
 	static public function mdlIngresarCarreras($tabla, $datos){
 
@@ -86,6 +99,16 @@ class ModeloCarreras{
 
 		$stmt->close();
 		$stmt = null;
+
+	}
+
+	static public function mdlCargarListas($tabla){
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+                  $stmt->execute();
+
+                  return $stmt;
+		$stmt->close();
+		$stmt=null;
 
 	}
 

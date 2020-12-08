@@ -8,11 +8,11 @@ class AjaxEspecialidades{
 	/*===================================
 	VALIDAR NO REPETIR USUARIO
 	===================================*/
-	public function ajaxValidarUsuario(){
+	public function ajaxValidarEspecialidad(){
 
-		$item = "usuario";
-		$valor = $_POST["validarUsuario"];
-		$respuesta = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+		$item = "NomEspecialidad";
+		$valor = $_POST["validarEspecialidad"];
+		$respuesta = ControladorEspecialidades::ctrValidarEspecialidades($item, $valor);
 		echo json_encode($respuesta);
 	}
 
@@ -34,10 +34,10 @@ class AjaxEspecialidades{
 VALIDAR NO REPETIR USUARIO
 ===================================*/
 
-if(isset($_POST["validarUsuario"])){ 
+if(isset($_POST["validarEspecialidad"])){ 
 
-	$valUsuario = new AjaxUsuarios();
-	$valUsuario -> ajaxValidarUsuario();
+	$valEspecialidad = new AjaxEspecialidades();
+	$valEspecialidad -> ajaxValidarEspecialidad();
 
 }
 

@@ -24,8 +24,8 @@ ESPECIALIDADES
             <tr>
               <th>Id Especialidad</th>
               <th>Nombre Especialidad</th>
-              <th>Id Carrera</th>
-              <th>acciones</th> 
+              <th>Carrera</th>
+              <th>Acciones</th> 
             </tr>
           </thead>
 
@@ -63,16 +63,32 @@ MODAL EDITAR ESPECIALIDAD
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                <input type="text" class="form-control input-lg" placeholder="Editar Nombre de la Especialidad" name="EditarNombreEspecialidad" id="NomEspecialidad" required>
+                <input type="text" class="form-control input-lg validarEspecialidad" placeholder="Editar Nombre de la Especialidad" name="EditarNombreEspecialidad" id="NomEspecialidad" required>
               </div>              
             </div>
+
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+                <select type="text" class="form-control input-lg" name="EditarIdCarrera" id="IdCarrera" required>
+                  <option value="0">Seleccione Carrera:</option>
+                              <?php
+ 
+                                $stmt = new ControladorEspecialidades();
+                                $stmt -> ctrCargarListaCarreras()
+                                ?>
+                </select>
+              </div>              
+            </div>
+
+
 
           </div>
         </div>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-          <button type="submit" class="btn btn-primary">Editar Unidad Academica</button>
+          <button type="submit" class="btn btn-primary">Editar Especialidad</button>
         </div>
 
       </form> 
@@ -107,24 +123,24 @@ MODAL AGREGAR ESPECIALIDADES
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control input-lg" placeholder="Ingresar nombre de la especialidad" name="nombreEspecialidad" required>
+                <input type="text" class="form-control input-lg validarEspecialidad" placeholder="Ingresar nombre de la especialidad" name="nombreEspecialidad" required>
               </div>              
             </div>
-
+            
             <div class="form-group">
               <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-book"></i></span>
-                
-
-                <select name="IdCarrera" class="form-control">
-                 <option value="Principal" label="Selecciona el ID de la carrera "></option>
-                 <option value="x"></option>
-                 <option value="y"></option>
-                 <option value="z"></option>
-
+                <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                <select type="text" class="form-control input-lg" placeholder="Ingresar ID de la Carrera" name="IdCarrera" required>
+                  <option value="0">Seleccione Carrera:</option>
+                              <?php
+ 
+                                $stmt = new ControladorEspecialidades();
+                                $stmt -> ctrCargarListaCarreras()
+                                ?>
                 </select>
               </div>              
             </div>
+          
 
           </div>  
         </div>

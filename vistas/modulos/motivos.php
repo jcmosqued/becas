@@ -29,7 +29,7 @@ BAJAS
                           <tr>
                             <th>Id</th>
                             <th>Motivo</th>
-                                 <th>Acciones</th>
+                            <th>Acciones</th>
                           </tr>
                         </thead>
 
@@ -64,7 +64,7 @@ BAJAS
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"></span>
-                            <input type="text" class="form-control input-lg" placeholder="Ingresar Motivo" name="Motivo" required>
+                            <input type="text" class="form-control input-lg validarMotivo" placeholder="Ingresar Motivo" name="Motivo" required>
                           </div>              
                         </div>
 
@@ -84,6 +84,9 @@ BAJAS
 
                   <?php
                    
+
+                   $crearMotivo = new ControladorMotivos();
+                  $crearMotivo-> ctrCrearMotivos();
                   ?>
 
                 </div>
@@ -111,10 +114,20 @@ BAJAS
                     <div class="modal-body">
                       <div class="box-body">
 
+
+                        <div class="form-group">
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+                            <input type="text" disabled="disabled" class="form-control input-lg" placeholder="ID Motivo" name="id1" id="id1" required>
+                            <input type="hidden" class="form-control input-lg " name="IdMotivo" id="IdMotivo">
+                          </div>              
+                        </div>
+
+
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"></span>
-                            <input type="text" class="form-control input-lg" placeholder="Edita Motivo" name="EditarMotivo" id="Motivo" required>
+                            <input type="text" class="form-control input-lg validarMotivo" placeholder="Edita Motivo" name="EditarMotivo" id="Motivo" required>
                           </div>              
                         </div>
 
@@ -133,16 +146,16 @@ BAJAS
                   </form> 
 
                   <?php
+                  $editarMotivo = new ControladorMotivos();
+                  $editarMotivo-> ctrEditarMotivos();
                   ?>
 
                 </div>
               </div>
             </div>
-
-
-
-            
             <?php
+            $eliminarMotivo = new ControladorMotivos();
+            $eliminarMotivo-> ctrEliminarMotivos();
             ?>
     
   

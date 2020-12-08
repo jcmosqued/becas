@@ -42,7 +42,8 @@ class ControladorUsuarios{
 	=================================*/
 
 	static public function ctrMostrarUsuarios($item, $valor){
-
+		//ITEM = NULL
+		//VALOR = NULL
 		//$tabla ="usuarios";
 		$tabla ="empleados";
 
@@ -50,6 +51,19 @@ class ControladorUsuarios{
 		return $respuesta;
 
 	}
+
+	/*================================
+	VALIDAR USUARIOS
+	=================================*/
+	static public function ctrValidarUsuarios($item, $valor){
+		$tabla ="empleados";
+
+		$respuesta = ModeloUsuarios::mdlValidarDatos($tabla, $item, $valor);
+		return $respuesta;
+
+	}
+
+
 
 	/*================================
 	CREAR USUARIOS
@@ -82,7 +96,7 @@ class ControladorUsuarios{
 				echo '<script>
 					swal({
 						type: "success",
-						title: "El usuario se ha guardado correctamente",
+						title: "El usuario se ha Guardado correctamente",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result){
@@ -96,7 +110,7 @@ class ControladorUsuarios{
 				echo '<script>
 					swal({
 						type: "error",
-						title: "El registro no se guardo, intentalo nuevamente",
+						title: "El registro no se Guardo, intentalo nuevamente",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result){
@@ -141,7 +155,7 @@ class ControladorUsuarios{
 				echo '<script>
 					swal({
 						type: "success",
-						title: "El usuario se ha guardado correctamente",
+						title: "El usuario se ha Guardado correctamente",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result){
@@ -154,7 +168,7 @@ class ControladorUsuarios{
 				echo '<script>
 					swal({
 						type: "error",
-						title: "El registro no se guardo, intentalo nuevamente",
+						title: "El registro no se Guardo, intentalo nuevamente",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 						}).then(function(result){

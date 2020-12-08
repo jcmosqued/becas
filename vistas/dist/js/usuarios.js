@@ -93,12 +93,10 @@ REVISAR SI EL USUARIO YA EXISTE
 
    $(".validarUsuario").change(function(){
 
-	   $(".alert").remove();
+   		$(".alert").remove();
 	   var usuario = $(this).val();
 	   var datos = new FormData();
 	   datos.append("validarUsuario", usuario);
-
-
 	   $.ajax({
 		   url:"ajax/usuarios.ajax.php",
 		   method: "POST",
@@ -107,8 +105,7 @@ REVISAR SI EL USUARIO YA EXISTE
 		   contentType: false,
 		   processData:false,
 		   success: function(respuesta){
-			   console.log(respuesta);
-			   if(respuesta != "false"){
+			   if(respuesta == "true"){
 				   $(".validarUsuario").parent().after('<div class="alert alert-warning">El usuario ya existe</div>');
 				   $(".validarUsuario").val("");
 			   }
@@ -216,7 +213,7 @@ $('.tablaUsuarios').on("click", ".btnEliminarUsuario", function(){
    
 	   
    swal({
-	   title: "¿Está seguro de elimnar al usuario?",
+	   title: "¿Está seguro de eliminar al Usuario?",
 	   text: "Una vez eliminado no se puede deshacer la operación",
 	   type: "warning",
 	   showCancelButton: true,
